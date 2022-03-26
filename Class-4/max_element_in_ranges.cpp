@@ -9,6 +9,7 @@ int max_element_in_ranges(vector<int> L, vector<int> R) {
         max_range = max(max_range, R[i]);
     }
 
+    // maximum index that we want to access in cum_freq: max_range + 1
     vector<int> cum_freq(max_range + 2);
 
     for (int i = 0; i < n; i++) {
