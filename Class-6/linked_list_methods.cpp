@@ -148,6 +148,35 @@ Node *delete_from_pos(Node *head, int pos) {
     return head;
 }
 
+// TC: O(n)
+Node *reverse(Node *head) {
+
+    Node *curr = head;
+    Node *prev = NULL;
+
+    while (curr != NULL) {
+        Node *temp = curr->next;
+        curr->next = prev;
+        prev = curr;
+        curr = temp;
+    }
+
+    return prev;
+}
+
+// TC: O(n)
+Node *get_middle(Node *head) {
+
+    Node *slow = head, *fast = head;
+
+    while (fast->next != NULL and fast->next->next != NULL) {
+        slow = slow->next;
+        fast = fast->next->next;
+    }
+
+    return slow;
+}
+
 int main() {
 
     Node *head = NULL;
@@ -225,5 +254,40 @@ int main() {
     head = delete_from_pos(head, 4);
 
     print_linked_list(head);
-    
+
+    // ---------------------------------------------
+
+    cout << endl;
+
+    head = NULL;
+    head = insert_at_end(head, 1);
+    head = insert_at_end(head, 2);
+    head = insert_at_end(head, 3);
+    head = insert_at_end(head, 4);
+    head = insert_at_end(head, 5);
+
+    print_linked_list(head);
+
+    head = reverse(head);
+
+    print_linked_list(head);
+
+    // ---------------------------------------------
+
+    cout << endl;
+
+    head = NULL;
+    head = insert_at_end(head, 1);
+    head = insert_at_end(head, 2);
+    head = insert_at_end(head, 3);
+    head = insert_at_end(head, 4);
+    head = insert_at_end(head, 5);
+
+    print_linked_list(head);
+    cout << get_middle(head)->data << endl;
+
+    head = insert_at_end(head, 6);
+
+    print_linked_list(head);
+    cout << get_middle(head)->data << endl;
 }
